@@ -12,9 +12,9 @@ func (cli *Client) DepositCallback(req XJPayCallbackReq, processor func(XJPayCal
 		return errors.New("md5Key is empty")
 	}
 
-	signSource := req.OrderNo + req.PickupUrl + req.ReceiveUrl + cli.Params.Md5Key
+	signSource := req.OrderNo + cli.Params.PickupUrl + cli.Params.ReceiveUrl + cli.Params.Md5Key
 	expectedSign := utils.Md5Hex(signSource)
-	if req.SignCheck != expectedSign {
+	if req.Sign != expectedSign {
 		data, _ := json.Marshal(req)
 		cli.logger.Errorf("xjpay deposit callback sign verify fail, req: %s", string(data))
 		return errors.New("sign verify error")
@@ -22,4 +22,3 @@ func (cli *Client) DepositCallback(req XJPayCallbackReq, processor func(XJPayCal
 
 	return processor(req)
 }
-
