@@ -1,11 +1,6 @@
 package go_xjpay
 
-import (
-	"fmt"
-	"testing"
-
-	"github.com/listenfengyang/go-xjpay/utils"
-)
+import "testing"
 
 func TestDepositCallbackVerifySign(t *testing.T) {
 	vLog := VLog{}
@@ -32,9 +27,18 @@ func TestDepositCallbackVerifySign(t *testing.T) {
 		Sign:          "ece94497b0d53fb7b4ca15a15c795187",
 	}
 
-	fmt.Printf("md5Sign str: %s\n", req.OrderNo+cli.Params.PickupUrl+cli.Params.ReceiveUrl+params.Md5Key)
-	md5Sign := utils.Md5Hex(req.OrderNo + cli.Params.PickupUrl + cli.Params.ReceiveUrl + params.Md5Key)
-	if req.Sign != md5Sign {
-		t.Fatalf("sign verify failed \n expect: %s\n got: %s\n", md5Sign, req.Sign)
+	err := cli.DepositCallback(req, func(XJPayCallbackReq) error {
+		return nil
+	})
+	if err != nil {
+		t.Fatalf("sign verify failed, err: %v", err)
+	}
+
+	req.Sign = "invalid-sign"
+	err = cli.DepositCallback(req, func(XJPayCallbackReq) error {
+		return nil
+	})
+	if err == nil {
+		t.Fatalf("expected sign verify error")
 	}
 }
