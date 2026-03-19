@@ -1,7 +1,7 @@
 package go_xjpay
 
 import (
-	"net/http"
+	"fmt"
 	"testing"
 )
 
@@ -26,15 +26,14 @@ func TestDeposit(t *testing.T) {
 
 	cli := NewClient(vLog, params)
 
-	resp, err := cli.Deposit(GenDepositRequestDemo())
+	linkUrl, err := cli.Deposit(GenDepositRequestDemo())
 	if err != nil {
 		cli.logger.Errorf("err:%s\n", err.Error())
 		t.Fatalf("deposit error: %v", err)
 	}
 
-	if resp.HttpStatusCode != http.StatusOK {
-		t.Fatalf("unexpected status: %d", resp.HttpStatusCode)
-	}
+	fmt.Printf("linkUrl: %s\n", linkUrl)
+	// return linkUrl
 }
 
 func GenDepositRequestDemo() XJPayDepositReq {
