@@ -16,7 +16,7 @@ func (cli *Client) Deposit(req XJPayDepositReq) (string, error) {
 	}
 	req.SignType = "md5"
 
-	sign := generateDepositSign(req.PickupUrl, req.ReceiveUrl, req.SignType, req.OrderNo, req.OrderAmount, req.ExchangeRate, req.OrderCurrency, cli.Params.CustomerId, cli.Params.Md5Key)
+	sign := generateDepositSign(req.PickupUrl, req.ReceiveUrl, req.SignType, req.OrderNo, req.OrderAmount, req.ExchangeRate, req.OrderCurrency, cli.Params.CustomerId, req.OrderCny, cli.Params.Md5Key)
 
 	values := url.Values{}
 	values.Set("receiveUrl", req.ReceiveUrl)
@@ -44,7 +44,7 @@ func (cli *Client) Deposit(req XJPayDepositReq) (string, error) {
 	return rawURL, nil
 }
 
-func generateDepositSign(pickupURL, receiveURL, signType, orderNo, orderAmount, exchangeRate, orderCurrency, customerID, md5Key string) string {
+func generateDepositSign(pickupURL, receiveURL, signType, orderNo, orderAmount, exchangeRate, orderCurrency, customerID, orderCny, md5Key string) string {
 	signSource := pickupURL + receiveURL + signType + orderNo + orderAmount + exchangeRate + orderCurrency + customerID + md5Key
 	fmt.Printf("signSource: %s\n", signSource)
 	return utils.Md5Hex(signSource)

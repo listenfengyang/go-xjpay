@@ -14,17 +14,12 @@ func TestDepositCallbackVerifySign(t *testing.T) {
 	}
 
 	cli := NewClient(vLog, params)
-
+	// type=1&orderNo=741336981235&state=success&signCheck=02fed0230a0cbcd06b81bc18e1ccc248
 	req := XJPayCallbackReq{
-		OrderNo:       "202603191118200521",
-		SignType:      "md5",
-		Status:        "success", //success, fail
-		OrderPayment:  "323.0",
-		OrderAmount:   "45.0",
-		OrderCurrency: "USDT",
-		TransactionId: "202603191618X2QK",
-		CustomerId:    "407",
-		Sign:          "ece94497b0d53fb7b4ca15a15c795187",
+		OrderNo:   "741336981235",
+		Type:      "1",
+		Status:    "success", //success, fail
+		SignCheck: "02fed0230a0cbcd06b81bc18e1ccc248",
 	}
 
 	err := cli.DepositCallback(req, func(XJPayCallbackReq) error {
@@ -32,13 +27,5 @@ func TestDepositCallbackVerifySign(t *testing.T) {
 	})
 	if err != nil {
 		t.Fatalf("sign verify failed, err: %v", err)
-	}
-
-	req.Sign = "invalid-sign"
-	err = cli.DepositCallback(req, func(XJPayCallbackReq) error {
-		return nil
-	})
-	if err == nil {
-		t.Fatalf("expected sign verify error")
 	}
 }

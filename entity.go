@@ -30,13 +30,20 @@ type XJPayDepositRsp struct {
 }
 
 type XJPayCallbackReq struct {
-	SignType      string `json:"signType" form:"signType" mapstructure:"signType"`
-	OrderNo       string `json:"orderNo" form:"orderNo" mapstructure:"orderNo"`
-	Status        string `json:"status" form:"status" mapstructure:"status"`
-	OrderPayment  string `json:"orderPayment" form:"orderPayment" mapstructure:"orderPayment"`
-	OrderAmount   string `json:"orderAmount" form:"orderAmount" mapstructure:"orderAmount"`
-	OrderCurrency string `json:"orderCurrency" form:"orderCurrency" mapstructure:"orderCurrency"`
-	TransactionId string `json:"transactionId" form:"transactionId" mapstructure:"transactionId"`
-	CustomerId    string `json:"customerId" form:"customerId" mapstructure:"customerId"`
-	Sign          string `json:"sign" form:"sign" mapstructure:"sign"`
+	Type      string `json:"type" form:"type" mapstructure:"type"`
+	OrderNo   string `json:"orderNo" form:"orderNo" mapstructure:"orderNo"`
+	Status    string `json:"status" form:"status" mapstructure:"status"`
+	SignCheck string `json:"signCheck" form:"signCheck" mapstructure:"signCheck"`
 }
+
+// type XJPayCallbackReq struct {
+// 	SignType      string `json:"signType" form:"signType" mapstructure:"signType"`
+// 	OrderNo       string `json:"orderNo" form:"orderNo" mapstructure:"orderNo"`
+// 	Status        string `json:"status" form:"status" mapstructure:"status"`
+// 	OrderPayment  string `json:"orderPayment" form:"orderPayment" mapstructure:"orderPayment"`
+// 	OrderAmount   string `json:"orderAmount" form:"orderAmount" mapstructure:"orderAmount"`
+// 	OrderCurrency string `json:"orderCurrency" form:"orderCurrency" mapstructure:"orderCurrency"`
+// 	TransactionId string `json:"transactionId" form:"transactionId" mapstructure:"transactionId"`
+// 	CustomerId    string `json:"customerId" form:"customerId" mapstructure:"customerId"`
+// 	Sign          string `json:"sign" form:"sign" mapstructure:"sign"`
+// }
