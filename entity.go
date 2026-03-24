@@ -32,7 +32,7 @@ type XJPayDepositRsp struct {
 type XJPayCallbackReq struct {
 	Type      string `json:"type" form:"type" mapstructure:"type"`
 	OrderNo   string `json:"orderNo" form:"orderNo" mapstructure:"orderNo"`
-	Status    string `json:"status" form:"status" mapstructure:"status"`
+	State     string `json:"state" form:"state" mapstructure:"state"`
 	SignCheck string `json:"signCheck" form:"signCheck" mapstructure:"signCheck"`
 }
 

@@ -18,7 +18,7 @@ func TestDepositCallbackVerifySign(t *testing.T) {
 	req := XJPayCallbackReq{
 		OrderNo:   "741336981235",
 		Type:      "1",
-		Status:    "success", //success, fail
+		State:     "success", //success, fail
 		SignCheck: "02fed0230a0cbcd06b81bc18e1ccc248",
 	}
 
