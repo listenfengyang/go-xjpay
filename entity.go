@@ -21,6 +21,7 @@ type XJPayDepositReq struct {
 	OrderCurrency string `json:"orderCurrency" form:"orderCurrency" mapstructure:"orderCurrency"`
 	CustomerId    string `json:"customerId" form:"customerId" mapstructure:"customerId"`
 	SignType      string `json:"signType" form:"signType" mapstructure:"signType"`
+	OrderCny      string `json:"orderCny" form:"orderCny" mapstructure:"orderCny"` // 实际支付的CNY 必填
 }
 
 type XJPayDepositRsp struct {

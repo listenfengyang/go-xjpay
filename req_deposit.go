@@ -28,6 +28,7 @@ func (cli *Client) Deposit(req XJPayDepositReq) (string, error) {
 	values.Set("signType", req.SignType)
 	values.Set("pickupUrl", req.PickupUrl)
 	values.Set("exchangeRate", req.ExchangeRate)
+	values.Set("orderCny", req.OrderCny)
 	if req.PayName != "" {
 		values.Set("payName", req.PayName)
 	}

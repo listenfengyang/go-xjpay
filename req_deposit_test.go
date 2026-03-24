@@ -38,10 +38,11 @@ func TestDeposit(t *testing.T) {
 
 func GenDepositRequestDemo() XJPayDepositReq {
 	return XJPayDepositReq{
-		OrderNo:       "74133698",
-		OrderAmount:   "10000",
+		OrderNo:       "7413369812",
+		OrderAmount:   "500",
 		ExchangeRate:  "7.13",
 		PayName:       "李四",
 		OrderCurrency: "USDT",
+		OrderCny:      "1000",
 	}
 }
